@@ -8,14 +8,10 @@ import { ArrowRight, Download, Github, MapPin, CheckCircle } from 'lucide-react'
 import { profile } from '@/src/data/profile';
 import TypedText from '@/components/sections/TypedText';
 import { AnimatedCounter } from '@/components/sections/AnimatedCounter';
-import { SkillBar } from '@/components/sections/SkillBar';
+import CircularSkill from '@/components/ui/CircularSkill';
 import ProjectCard from '@/components/sections/ProjectCard';
 import ServiceCard from '@/components/sections/ServiceCard';
 
-const HeroCanvas = dynamic(() => import('@/components/three/HeroCanvas'), {
-  ssr: false,
-  loading: () => <div className="w-full h-full bg-transparent" />,
-});
 
 function FadeIn({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -54,16 +50,12 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10">
           <div
             className="absolute inset-0 transition-all duration-700"
-            style={{ background: isDark
-              ? 'radial-gradient(ellipse at 60% 40%, rgba(14,165,233,0.12) 0%, transparent 60%), radial-gradient(ellipse at 20% 70%, rgba(20,184,166,0.08) 0%, transparent 50%), hsl(var(--background))'
-              : 'radial-gradient(ellipse at 60% 40%, rgba(14,165,233,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 70%, rgba(20,184,166,0.06) 0%, transparent 50%), hsl(var(--background))'
+            style={{
+              background: isDark
+                ? "radial-gradient(ellipse at 60% 40%, rgba(14,165,233,0.12) 0%, transparent 60%), radial-gradient(ellipse at 20% 70%, rgba(20,184,166,0.08) 0%, transparent 50%), hsl(var(--background))"
+                : "radial-gradient(ellipse at 60% 40%, rgba(14,165,233,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 70%, rgba(20,184,166,0.06) 0%, transparent 50%), hsl(var(--background))",
             }}
           />
-        </div>
-
-        {/* 3D Canvas */}
-        <div className="absolute inset-0 -z-5">
-          {mounted && <HeroCanvas isDark={isDark} />}
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 pt-32">
@@ -75,8 +67,10 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4 tracking-tight">
-              Hi, I'm{' '}
-              <span className="gradient-text">{profile.name.split(' ')[0]}</span>
+              Hi, I'm{" "}
+              <span className="gradient-text">
+                {profile.name.split(" ")[0]}
+              </span>
             </h1>
 
             <div className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-6 h-10">
@@ -112,7 +106,9 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-border/50">
               {profile.stats.map((s, i) => (
                 <div key={i}>
-                  <div className="text-2xl font-bold gradient-text">{s.value}</div>
+                  <div className="text-2xl font-bold gradient-text">
+                    {s.value}
+                  </div>
                   <div className="text-xs text-muted-foreground">{s.label}</div>
                 </div>
               ))}
@@ -133,7 +129,12 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {profile.stats.map((s, i) => (
-              <AnimatedCounter key={i} value={s.value} label={s.label} delay={i * 150} />
+              <AnimatedCounter
+                key={i}
+                value={s.value}
+                label={s.label}
+                delay={i * 150}
+              />
             ))}
           </div>
         </div>
@@ -144,7 +145,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-4">
-              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">Who Am I</span>
+              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">
+                Who Am I
+              </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
               About <span className="gradient-text">Me</span>
@@ -168,21 +171,26 @@ export default function HomePage() {
 
             <FadeIn delay={200}>
               <div className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed text-lg">{profile.bio}</p>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  {profile.bio}
+                </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   <div className="flex items-center gap-2 text-sm">
                     <MapPin className="w-4 h-4 text-sky-500" />
-                    <span className="text-muted-foreground">{profile.city}</span>
+                    <span className="text-muted-foreground">
+                      {profile.city}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-teal-500" />
-                    <span className="text-teal-600 dark:text-teal-400 font-medium">Freelance Available</span>
+                    <span className="text-teal-600 dark:text-teal-400 font-medium">
+                      Freelance Available
+                    </span>
                   </div>
                 </div>
-                <div className="space-y-3 pt-4">
-                  {profile.skills.slice(0, 5).map((s, i) => (
-                    <SkillBar key={s.name} name={s.name} level={s.level} delay={i * 100} />
-                  ))}
+
+                <div className="pt-4 flex justify-center">
+                  <CircularSkill skills={profile.skills} />
                 </div>
                 <div className="pt-4">
                   <Link
@@ -203,13 +211,16 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-4">
-              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">What I Offer</span>
+              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">
+                What I Offer
+              </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
               My <span className="gradient-text">Services</span>
             </h2>
             <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">
-              Comprehensive frontend solutions designed to elevate your digital presence.
+              Comprehensive frontend solutions designed to elevate your digital
+              presence.
             </p>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -235,7 +246,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-4">
-              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">My Work</span>
+              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">
+                My Work
+              </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
               Featured <span className="gradient-text">Projects</span>
@@ -267,11 +280,12 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <FadeIn>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Let's Build Something{' '}
+              Let's Build Something{" "}
               <span className="gradient-text">Amazing Together</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Have a project in mind? I'd love to hear about it. Let's turn your vision into a reality.
+              Have a project in mind? I'd love to hear about it. Let's turn your
+              vision into a reality.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link

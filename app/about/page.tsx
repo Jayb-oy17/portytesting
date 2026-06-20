@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { MapPin, CheckCircle, Download, Mail, Briefcase, GraduationCap, ArrowRight } from 'lucide-react';
 import { profile } from '@/src/data/profile';
 import { AnimatedCounter } from '@/components/sections/AnimatedCounter';
-import { SkillBar } from '@/components/sections/SkillBar';
+import CircularSkill  from '@/components/ui/CircularSkill';
 
 function FadeIn({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,12 +32,15 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="py-20 bg-gradient-to-b from-sky-500/5 to-transparent border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">About Me</span>
+          <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">
+            About Me
+          </span>
           <h1 className="text-4xl md:text-6xl font-bold mt-2 mb-4">
             The <span className="gradient-text">Developer</span> Behind the Code
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Passionate about crafting digital experiences that are beautiful, functional, and accessible.
+            Passionate about crafting digital experiences that are beautiful,
+            functional, and accessible.
           </p>
         </div>
       </section>
@@ -49,12 +52,18 @@ export default function AboutPage() {
             <FadeIn delay={0}>
               <div className="relative">
                 <div className="aspect-square max-w-sm mx-auto lg:ml-0 rounded-2xl overflow-hidden neon-border shadow-2xl">
-                  <img src={profile.profilePicture} alt={profile.name} className="w-full h-full object-cover" />
+                  <img
+                    src={profile.profilePicture}
+                    alt={profile.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="absolute -bottom-6 -right-6 rounded-2xl border border-border bg-card p-4 shadow-xl">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-teal-500 animate-pulse" />
-                    <span className="text-sm font-semibold">Available for Work</span>
+                    <span className="text-sm font-semibold">
+                      Available for Work
+                    </span>
                   </div>
                 </div>
               </div>
@@ -64,26 +73,37 @@ export default function AboutPage() {
               <div className="space-y-5">
                 <h2 className="text-3xl font-bold">{profile.name}</h2>
                 <p className="text-sky-500 font-semibold">{profile.tagline}</p>
-                <p className="text-muted-foreground leading-relaxed text-lg">{profile.bio}</p>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  {profile.bio}
+                </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-2">
                   <div className="flex items-center gap-2 text-sm">
                     <Mail className="w-4 h-4 text-sky-500 shrink-0" />
-                    <a href={`mailto:${profile.contactEmail}`} className="text-muted-foreground hover:text-sky-500 transition-colors truncate">
+                    <a
+                      href={`mailto:${profile.contactEmail}`}
+                      className="text-muted-foreground hover:text-sky-500 transition-colors truncate"
+                    >
                       {profile.contactEmail}
                     </a>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <MapPin className="w-4 h-4 text-sky-500 shrink-0" />
-                    <span className="text-muted-foreground">{profile.city}</span>
+                    <span className="text-muted-foreground">
+                      {profile.city}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <Briefcase className="w-4 h-4 text-sky-500 shrink-0" />
-                    <span className="text-muted-foreground">Frontend Developer</span>
+                    <span className="text-muted-foreground">
+                      Frontend Developer
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-teal-500 shrink-0" />
-                    <span className="text-teal-600 dark:text-teal-400 font-medium">Freelance Available</span>
+                    <span className="text-teal-600 dark:text-teal-400 font-medium">
+                      Freelance Available
+                    </span>
                   </div>
                 </div>
 
@@ -112,7 +132,12 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {profile.stats.map((s, i) => (
-              <AnimatedCounter key={i} value={s.value} label={s.label} delay={i * 150} />
+              <AnimatedCounter
+                key={i}
+                value={s.value}
+                label={s.label}
+                delay={i * 150}
+              />
             ))}
           </div>
         </div>
@@ -123,19 +148,17 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">Technical Arsenal</span>
+              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">
+                Technical Arsenal
+              </span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2">
                 Skills & <span className="gradient-text">Proficiency</span>
               </h2>
             </div>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {profile.skills.map((s, i) => (
-              <FadeIn key={s.name} delay={i * 80}>
-                <SkillBar name={s.name} level={s.level} delay={i * 100} />
-              </FadeIn>
-            ))}
-          </div>
+          <FadeIn className="flex justify-center">
+            <CircularSkill skills={profile.skills} />
+          </FadeIn>
         </div>
       </section>
 
@@ -144,7 +167,9 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">Work History</span>
+              <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">
+                Work History
+              </span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2">
                 Professional <span className="gradient-text">Experience</span>
               </h2>
@@ -166,16 +191,23 @@ export default function AboutPage() {
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                         <div>
                           <h3 className="font-bold text-lg">{exp.role}</h3>
-                          <p className="text-sky-500 font-medium">{exp.company}</p>
+                          <p className="text-sky-500 font-medium">
+                            {exp.company}
+                          </p>
                         </div>
                         <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full shrink-0">
                           {exp.period}
                         </span>
                       </div>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">{exp.description}</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                        {exp.description}
+                      </p>
                       <div className="flex flex-wrap gap-1.5">
                         {exp.skills.map((s) => (
-                          <span key={s} className="text-xs px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 font-medium">
+                          <span
+                            key={s}
+                            className="text-xs px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 font-medium"
+                          >
                             {s}
                           </span>
                         ))}

@@ -3,7 +3,8 @@ export const profile = {
   tagline: "Frontend Developer & UI/UX Designer",
   role: ["Web Developer", "Frontend Developer", "UI/UX Designer"],
   bio: "I'm a passionate Frontend Developer who crafts immersive digital experiences — from pixel-perfect interfaces to fluid, interactive web applications. With deep expertise in user experience optimization, responsive design, and cross-platform compatibility, I turn complex ideas into elegant, high-performance products that users love.",
-  profilePicture: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
+  profilePicture:
+    "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
   resumeUrl: "#",
   githubUsername: "Jayb-oy17",
   contactEmail: "abdullateefmujahid@gmail.com",
@@ -27,14 +28,14 @@ export const profile = {
   ],
 
   skills: [
-    { name: "HTML", level: 100 },
-    { name: "CSS", level: 95 },
-    { name: "JavaScript", level: 90 },
-    { name: "React", level: 70 },
-    { name: "UI/UX Design", level: 100 },
-    { name: "Next.js", level: 65 },
-    { name: "TypeScript", level: 60 },
-    { name: "Tailwind CSS", level: 80 },
+    { name: "HTML5", proficiency: 100 },
+    { name: "CSS3 / Tailwind", proficiency: 95 },
+    { name: "JavaScript (ES6+)", proficiency: 90 },
+    { name: "React.js / Next.js", proficiency: 85 },
+    { name: "UI / UX Design", proficiency: 100 },
+    { name: "Mobile App Development", proficiency: 75 },
+    { name: "Backend Development", proficiency: 70 },
+    { name: "Version Control (Git)", proficiency: 90 },
   ],
 
   experience: [
@@ -100,6 +101,42 @@ export const profile = {
       title: "Let's Build Together",
       description:
         "Ready to bring your vision to life? I collaborate closely with founders, designers, and teams to transform ideas into production-ready digital products — fast, beautiful, and built to last.",
+    },
+    {
+      title: "Frontend Development",
+      description:
+        "Building responsive, interactive, and visually stunning web applications using modern frameworks like React, ensuring seamless user experiences across all devices.",
+      icon: "Code2", // Use your preferred icon library (e.g., Lucide, FontAwesome)
+    },
+    {
+      title: "Mobile App Development",
+      description:
+        "Creating cross-platform mobile applications with intuitive interfaces and smooth performance, bringing your ideas to life on both iOS and Android devices.",
+      icon: "Smartphone",
+    },
+    {
+      title: "Backend Development",
+      description:
+        "Designing robust server-side logic, RESTful APIs, and database integrations to power dynamic, secure, and scalable web and mobile applications.",
+      icon: "Server",
+    },
+    {
+      title: "Website Building",
+      description:
+        "End-to-end website creation from concept to deployment. I build fast, SEO-optimized, and accessible websites tailored to your specific business goals.",
+      icon: "Globe",
+    },
+    {
+      title: "Frontend Training & Mentorship",
+      description:
+        "Providing hands-on training and guidance for aspiring developers to master modern frontend technologies, best practices, and clean code principles.",
+      icon: "GraduationCap",
+    },
+    {
+      title: "UI/UX Design",
+      description:
+        "Crafting user-centric designs with a focus on accessibility, clean aesthetics, and optimized user journeys to maximize engagement and conversions.",
+      icon: "Palette",
     },
   ],
 
